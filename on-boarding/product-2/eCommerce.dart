@@ -39,6 +39,10 @@ class eCommerceApp {
   }
 
   void deleteProduct(String name) {
+    if (products.every((product) => product.getName != name)) {
+      print("Product does not exist");
+      return;
+    }
     products.removeWhere((product) => product.getName == name);
   }
 }
