@@ -1,16 +1,32 @@
-# task_6
+# Project Title
 
-A new Flutter project.
+Task 6: Implementing a flutter UI.
 
-## Getting Started
+## Objective
 
-This project is a starting point for a Flutter application.
+Create a Flutter user interface that replicates the design of a provided picture.
+[Figma Link](https://www.figma.com/file/957Md2CrZ2B9KGjHy8RDcH/Internship?type=design&node-id=1%3A48&mode=design&t=dGzOJNr9pjkmYQog-1)
 
-A few resources to get you started if this is your first Flutter project:
+## Screenshots
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Below are some screenshots of the project:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Screen One
+
+![Home Page](./screenShots/home_page_web.png)
+
+### Screen Two
+
+![Feature 1](./screenShots/details_page_web.png)
+
+### Screen Three
+
+![Feature 2](./screenShots/search_product_page.png)
+
+### Screen Four
+
+
+<div style="display: flex; justify-content: space-between;">
+  <img src="./screenShots/add_product_page_1.png" alt="Feature 3" style="width: 48%;">
+  <img src="./screenShots/add_product_page_2.png" alt="Feature 4" style="width: 48%;">
+</div>

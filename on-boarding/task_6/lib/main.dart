@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF3F51F3)),
       ),
-      home: HomePage(),
+      home: SearchProductPage(),
     );
   }
 }
