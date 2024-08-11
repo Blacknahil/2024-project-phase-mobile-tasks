@@ -23,7 +23,7 @@ This Flutter app is designed to manage products. It allows users to add, update,
 
 1. Clone the repository:
     ```sh
-    git clone 
+    https://github.com/Blacknahil/2024-project-phase-mobile-tasks.git
     cd on-boarding/task_7
     ```
 
