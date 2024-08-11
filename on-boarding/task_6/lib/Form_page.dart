@@ -2,24 +2,83 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:task_6/components/large_button.dart';
+import 'package:task_6/models/products.dart';
 
-class AddProductPage extends StatefulWidget {
-  const AddProductPage({super.key});
+import 'models/product.dart';
+
+class FormProductPage extends StatefulWidget {
+  final Product? product;
+  const FormProductPage({super.key, this.product});
 
   @override
-  State<AddProductPage> createState() => _AddProductPageState();
+  State<FormProductPage> createState() => _FormProductPageState();
 }
 
-class _AddProductPageState extends State<AddProductPage> {
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController catagoryController = TextEditingController();
-  final TextEditingController priceController = TextEditingController();
-  final TextEditingController descriptionController = TextEditingController();
+class _FormProductPageState extends State<FormProductPage> {
+  late TextEditingController nameController = TextEditingController();
+  late TextEditingController catagoryController = TextEditingController();
+  late TextEditingController priceController = TextEditingController();
+  late TextEditingController descriptionController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
+  final eApp = eCommerce();
+
+  @override
+  void initState() {
+    super.initState();
+
+    nameController = TextEditingController(text: widget.product?.getName ?? '');
+    catagoryController =
+        TextEditingController(text: widget.product?.getCatagory ?? '');
+    priceController =
+        TextEditingController(text: widget.product?.getPrice.toString() ?? '');
+
+    descriptionController =
+        TextEditingController(text: widget.product?.getDescription ?? '');
+  }
+
+  void _submitForm() {
+    if (_formKey.currentState!.validate()) {
+      if (widget.product == null) {
+        eApp.addProduct(
+          name: nameController.text,
+          catagory: catagoryController.text,
+          description: descriptionController.text,
+          price: int.tryParse(priceController.text),
+        );
+      } else {
+        bool success = eApp.updateProduct(
+          id: widget.product!.getId!,
+          name: nameController.text,
+          catagory: catagoryController.text,
+          price: int.tryParse(priceController.text),
+          description: descriptionController.text,
+        );
+      }
+      debugPrint("add the product it is valid");
+
+      Navigator.pop(context, true);
+    } else {
+      debugPrint("invalid Product");
+    }
+  }
+
+  void _deleteForm() {
+    debugPrint("go back and delete the form");
+    Navigator.pop(context);
+  }
+
+  void check() {
+    if (widget.product != null) {
+      debugPrint("Product has been recieved");
+    } else {
+      debugPrint("Produt not recievd");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    check();
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -28,12 +87,15 @@ class _AddProductPageState extends State<AddProductPage> {
           iconSize: 25,
           icon: const Icon(Icons.arrow_back_ios),
           onPressed: () {
-            debugPrint("Go back to the prevois page");
+            Navigator.pop(context);
+            debugPrint("Go back to the prevouis page");
           },
         ),
-        title: const Text(
-          "Add Product",
-          style: TextStyle(
+        title: Text(
+          widget.product == null
+              ? "Add Product"
+              : "Update ${widget.product?.getName}",
+          style: const TextStyle(
             fontWeight: FontWeight.w600,
             fontSize: 17,
             color: Color(0XFF3E3E3E),
@@ -90,8 +152,14 @@ class _AddProductPageState extends State<AddProductPage> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
                       color: const Color(0xFFF3F3F3)),
-                  child: TextField(
+                  child: TextFormField(
                     // expands: true,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "please enter name of the product";
+                      }
+                      return null;
+                    },
                     maxLines: null,
                     controller: nameController,
                     decoration: const InputDecoration(
@@ -117,8 +185,14 @@ class _AddProductPageState extends State<AddProductPage> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
                       color: const Color(0xFFF3F3F3)),
-                  child: TextField(
+                  child: TextFormField(
                     // expands: true,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Please Enter the catagory of the product";
+                      }
+                      return null;
+                    },
                     maxLines: null,
                     controller: catagoryController,
                     decoration: const InputDecoration(
@@ -140,14 +214,22 @@ class _AddProductPageState extends State<AddProductPage> {
                 ),
                 const SizedBox(height: 10),
                 Container(
-                  height: 50,
+                  height: 60,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
                       color: const Color(0xFFF3F3F3)),
                   child: Stack(
                     children: [
-                      TextField(
+                      TextFormField(
                         // expands: true,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Enter a price";
+                          } else if (int.tryParse(value) == null) {
+                            return "Enter a valid integer";
+                          }
+                          return null;
+                        },
                         maxLines: null,
                         controller: priceController,
                         decoration: const InputDecoration(
@@ -189,10 +271,16 @@ class _AddProductPageState extends State<AddProductPage> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
                       color: const Color(0xFFF3F3F3)),
-                  child: TextField(
+                  child: TextFormField(
                     // expands: true,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Enter descripption of the product";
+                      }
+                      return null;
+                    },
                     maxLines: null,
-                    controller: catagoryController,
+                    controller: descriptionController,
                     decoration: const InputDecoration(
                       fillColor: Color(0xFFF3F3F3),
                       filled: true,
@@ -203,9 +291,16 @@ class _AddProductPageState extends State<AddProductPage> {
                   ),
                 ),
                 const SizedBox(height: 50),
-                LargeButton(const Color(0xFF3F51F3), "ADD"),
+                LargeButton(const Color(0xFF3F51F3),
+                    widget.product == null ? "ADD" : "UPDATE",
+                    onPressedFunction: _submitForm),
                 const SizedBox(height: 20),
-                LargeButton(const Color(0xFFFF1313), "DELETE")
+                if (widget.product == null)
+                  LargeButton(
+                    const Color(0xFFFF1313),
+                    "DELETE",
+                    onPressedFunction: _deleteForm,
+                  ),
               ],
             ),
           ),

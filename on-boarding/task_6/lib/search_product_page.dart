@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:task_6/components/large_button.dart';
+import 'package:task_6/models/products.dart';
 
 import 'components/static_card.dart';
 
@@ -17,8 +18,15 @@ class _SearchProductPageState extends State<SearchProductPage> {
   TextEditingController catagoryController = TextEditingController();
   TextEditingController filterController = TextEditingController();
 
+  void _refresh() {
+    setState() {}
+  }
+
   @override
   Widget build(BuildContext context) {
+    final eApp = eCommerce();
+    final products = eApp.products;
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -27,7 +35,7 @@ class _SearchProductPageState extends State<SearchProductPage> {
           iconSize: 25,
           icon: const Icon(Icons.arrow_back_ios),
           onPressed: () {
-            debugPrint("Go back to the prevois page");
+            Navigator.pop(context);
           },
         ),
         title: const Center(
@@ -114,9 +122,12 @@ class _SearchProductPageState extends State<SearchProductPage> {
             ListView.builder(
               shrinkWrap: true,
               padding: const EdgeInsets.fromLTRB(30, 30, 30, 0),
-              itemCount: 10,
+              itemCount: products.length,
               itemBuilder: (BuildContext context, index) {
-                return const StaticCard();
+                return StaticCard(
+                  product: products[index],
+                  onProductChanged: _refresh,
+                );
               },
             ),
           ],

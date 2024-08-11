@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 class SmallButton extends StatelessWidget {
   final Color color;
   final String text;
+  final VoidCallback? onPressedFunction;
 
-  SmallButton(this.color, this.text, {super.key});
+  const SmallButton(this.color, this.text, {this.onPressedFunction, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +13,10 @@ class SmallButton extends StatelessWidget {
       height: 50,
       width: 150,
       child: OutlinedButton(
-        onPressed: () {},
+        onPressed: onPressedFunction ??
+            () {
+              debugPrint("onpressed callback not passed");
+            },
         style: ButtonStyle(
           shape: MaterialStateProperty.all(
             RoundedRectangleBorder(

@@ -1,14 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../models/product.dart';
+import '../models/products.dart';
+
 class StaticCard extends StatefulWidget {
-  const StaticCard({super.key});
+  final Product product;
+  final VoidCallback onProductChanged;
+  const StaticCard(
+      {required this.product, required this.onProductChanged, super.key});
 
   @override
   State<StaticCard> createState() => _StaticCardState();
 }
 
 class _StaticCardState extends State<StaticCard> {
+  final eApp = eCommerce();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -16,7 +23,13 @@ class _StaticCardState extends State<StaticCard> {
       child: InkWell(
         borderRadius: BorderRadius.circular(11),
         onTap: () {
-          debugPrint("Go to the details page");
+          debugPrint("Go to the details of ${widget.product.getId}");
+          Navigator.pushNamed(context, '/details', arguments: widget.product)
+              .then((result) {
+            if (result == true) {
+              widget.onProductChanged();
+            }
+          });
         },
         child: Card(
           color: const Color(0XFFFFFFFF),
@@ -31,22 +44,22 @@ class _StaticCardState extends State<StaticCard> {
                   fit: BoxFit.fitWidth,
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.fromLTRB(30, 20, 30, 0),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(30, 20, 30, 0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Derby Leather Shoes",
-                      style: TextStyle(
+                      "${widget.product.getName}",
+                      style: const TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.w500,
                         color: Color(0XFF3E3E3E),
                       ),
                     ),
                     Text(
-                      "\$120",
-                      style: TextStyle(
+                      "\$ ${widget.product.getPrice}",
+                      style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
                         color: Color(0XFF3E3E3E),
@@ -55,19 +68,19 @@ class _StaticCardState extends State<StaticCard> {
                   ],
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.fromLTRB(30, 10, 30, 20),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(30, 10, 30, 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Men's shoe",
-                      style: TextStyle(
+                      "${widget.product.getCatagory}",
+                      style: const TextStyle(
                         color: Color(0XFFAAAAAA),
                         fontSize: 12.0,
                       ),
                     ),
-                    Row(
+                    const Row(
                       children: [
                         Icon(
                           Icons.star,

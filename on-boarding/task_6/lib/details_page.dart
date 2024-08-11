@@ -1,10 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:task_6/components/small_button.dart';
 
 import 'components/size_scrollable.dart';
+import 'models/product.dart';
+import 'models/products.dart';
 
-class DetailsPage extends StatelessWidget {
-  DetailsPage({super.key});
+class DetailsPage extends StatefulWidget {
+  final Product product;
+
+  const DetailsPage({super.key, required this.product});
+
+  @override
+  State<DetailsPage> createState() => _DetailsPageState();
+}
+
+class _DetailsPageState extends State<DetailsPage> {
+  final eApp = eCommerce();
+  var updated = false;
+  void _refresh() {
+    setState(() {});
+  }
+
+  void updateButtonClicked() {
+    Navigator.pushNamed(context, '/form', arguments: widget.product)
+        .then((result) {
+      if (result == true) {
+        updated = true;
+        _refresh();
+      }
+    });
+  }
+
+  void deleteProduct() {
+    eApp.deleteProduct(widget.product.getId ?? 0);
+
+    debugPrint("product being delted ${eApp.products.length}");
+    Navigator.pop(context, true);
+  }
 
   final List<int> shoeSizes = [38, 39, 40, 41, 42, 43, 44, 45];
 
@@ -14,26 +47,57 @@ class DetailsPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
-              width: double.infinity,
-              child: Image.asset('images/shoe.png', fit: BoxFit.fitWidth),
-            ),
+            Stack(children: [
+              SizedBox(
+                width: double.infinity,
+                child: Image.asset('images/shoe.png', fit: BoxFit.fitWidth),
+              ),
+              Positioned(
+                top: 20,
+                left: 20,
+                child: Container(
+                  margin: const EdgeInsets.only(right: 20),
+                  foregroundDecoration: const BoxDecoration(
+                      // color: const Color(0xFFFFFFFF),
+                      // borderRadius: BorderRadius.circular(30.0),
+                      ),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFFFFFFF),
+                    borderRadius: BorderRadius.circular(30.0),
+                    // border: BoxBorder
+                  ),
+                  child: IconButton(
+                    padding: const EdgeInsets.all(10.0),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: IconButton(
+                      onPressed: () {
+                        Navigator.pop(context, updated);
+                      },
+                      icon: const Icon(Icons.arrow_back_ios),
+                      color: const Color(0xFF3F51F3),
+                    ),
+                  ),
+                ),
+              ),
+            ]),
             Padding(
               padding: const EdgeInsets.fromLTRB(30, 20, 30, 20),
               child: Column(
                 children: [
                   const SizedBox(height: 20),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Men's shoe",
-                        style: TextStyle(
+                        widget.product.getCatagory ?? "",
+                        style: const TextStyle(
                           color: Color(0XFFAAAAAA),
                           fontSize: 16.0,
                         ),
                       ),
-                      Row(
+                      const Row(
                         children: [
                           Icon(
                             Icons.star,
@@ -52,20 +116,20 @@ class DetailsPage extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 20),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Derby Leather Shoes",
-                        style: TextStyle(
+                        widget.product.getName ?? "",
+                        style: const TextStyle(
                           fontSize: 24.0,
                           fontWeight: FontWeight.w700,
                           color: Color(0XFF3E3E3E),
                         ),
                       ),
                       Text(
-                        "\$120",
-                        style: TextStyle(
+                        "\$ ${widget.product.getPrice}",
+                        style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w700,
                           color: Color(0XFF3E3E3E),
@@ -86,15 +150,11 @@ class DetailsPage extends StatelessWidget {
                   const SizedBox(),
                   SizeScrollable(shoeSizes),
                   const SizedBox(height: 20),
-                  const Column(
+                  Column(
                     children: [
                       Text(
-                        'A derby leather shoe is a classic and versatile footwear option characterized by its open lacing system'
-                        'where the shoelace eyelets are sewn on top of the vamp (the upper part of the shoe). This design feature provides a more relaxed and casual'
-                        'look compared to the closed lacing system of oxford shoes. Derby shoes are typically made of high-quality leather, known for its durability and '
-                        'elegance, making them suitable for both formal and casual occasions.'
-                        ' With their timeless style and comfortable fit, derby leather shoes are a staple in any well-rounded wardrobe.',
-                        style: TextStyle(
+                        widget.product.getDescription ?? "",
+                        style: const TextStyle(
                           color: Color(0XFF666666),
                           fontSize: 15,
                           fontWeight: FontWeight.w500,
@@ -106,8 +166,16 @@ class DetailsPage extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SmallButton(const Color(0xFFFF1313), "Delete"),
-                      SmallButton(const Color(0xFF3F51F3), "Update"),
+                      SmallButton(
+                        const Color(0xFFFF1313),
+                        "Delete",
+                        onPressedFunction: deleteProduct,
+                      ),
+                      SmallButton(
+                        const Color(0xFF3F51F3),
+                        "Update",
+                        onPressedFunction: updateButtonClicked,
+                      ),
                     ],
                   ),
                   const SizedBox(height: 20),
