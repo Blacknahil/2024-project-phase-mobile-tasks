@@ -39,6 +39,9 @@ dependencies:
   get_it: ^7.7.0
   flutter_bloc: ^8.1.6
   dartz: ^0.10.1
+  mockito: ^5.4.4
+  http: ^1.2.2
+  build_runner: ^2.4.9
 
 dev_dependencies:
   flutter_test:
