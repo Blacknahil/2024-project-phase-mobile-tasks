@@ -19,7 +19,6 @@ void main() {
   const testId = 1;
 
   const testProduct = ProductEntity(
-    catagory: "Man's shoes",
     name: "ambessa shoes",
     description: "a shoe made from the natural tannery of ethiopian cows",
     price: 120,

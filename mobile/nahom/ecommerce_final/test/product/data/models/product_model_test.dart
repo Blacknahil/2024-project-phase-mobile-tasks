@@ -8,7 +8,6 @@ import '../../../fixtures/fixture_reader.dart';
 
 void main() {
   const testProductModel = ProductModel(
-    catagory: "Man's shoes",
     name: "ambessa shoes",
     description: "a shoe made from the natural tannery of ethiopian cows",
     price: 120,
@@ -47,7 +46,6 @@ void main() {
       //arrange
       final result = testProductModel.toJson();
       final expectedJson = {
-        "catagory": "Man's shoes",
         "name": "ambessa shoes",
         "description": "a shoe made from the natural tannery of ethiopian cows",
         "price": 120,

@@ -5,14 +5,12 @@ class ProductModel extends ProductEntity {
     required String name,
     int id = -1,
     required String description,
-    required String catagory,
     String imageUrl = '',
     required int price,
   }) : super(
           name: name,
           id: id,
           description: description,
-          catagory: catagory,
           price: price,
           imageUrl: imageUrl,
         );
@@ -21,7 +19,6 @@ class ProductModel extends ProductEntity {
     return ProductModel(
       name: json['name'],
       description: json['description'],
-      catagory: json['catagory'],
       price: json['price'],
       id: json['id'] ?? -1,
       imageUrl: json["imageUrl"] ?? '',
@@ -32,7 +29,6 @@ class ProductModel extends ProductEntity {
     return {
       "name": name,
       "id": id,
-      "catagory": catagory,
       "description": description,
       "price": price,
       "imageUrl": imageUrl,
@@ -45,7 +41,6 @@ class ProductModel extends ProductEntity {
       name: name,
       price: price,
       description: description,
-      catagory: catagory,
       imageUrl: imageUrl,
     );
   }
@@ -54,10 +49,13 @@ class ProductModel extends ProductEntity {
     return ProductModel(
       name: entity.name,
       description: entity.description,
-      catagory: entity.catagory,
       price: entity.price,
       id: entity.id,
       imageUrl: entity.imageUrl,
     );
+  }
+
+  static List<ProductModel> fromJsonList(List<dynamic> jsonList) {
+    return jsonList.map((json) => ProductModel.fromJson(json)).toList();
   }
 }

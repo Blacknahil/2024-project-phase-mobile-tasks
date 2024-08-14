@@ -43,6 +43,7 @@ dependencies:
   http: ^1.2.2
   build_runner: ^2.4.9
   internet_connection_checker: ^1.0.0+1
+  shared_preferences: ^2.2.3
 
 dev_dependencies:
   flutter_test:
