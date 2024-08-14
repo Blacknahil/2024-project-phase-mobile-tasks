@@ -10,9 +10,9 @@ import 'dart:typed_data' as _i14;
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:ecommerce_task_9/core/error/failure.dart' as _i7;
 import 'package:ecommerce_task_9/core/platform/network_info.dart' as _i9;
-import 'package:ecommerce_task_9/features/product/data/data_sources/product_local_data_source.dart'
+import 'package:ecommerce_task_9/features/product/data/data_sources/local_data_source.dart'
     as _i10;
-import 'package:ecommerce_task_9/features/product/data/data_sources/product_remote_data_source.dart'
+import 'package:ecommerce_task_9/features/product/data/data_sources/remote_data_source.dart'
     as _i11;
 import 'package:ecommerce_task_9/features/product/data/models/product_model.dart'
     as _i3;
@@ -204,12 +204,11 @@ class MockNetworkInfo extends _i1.Mock implements _i9.NetworkInfo {
       ) as _i6.Future<bool>);
 }
 
-/// A class which mocks [ProductLocalDataSource].
+/// A class which mocks [LocalDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockProductLocalDataSource extends _i1.Mock
-    implements _i10.ProductLocalDataSource {
-  MockProductLocalDataSource() {
+class MockLocalDataSource extends _i1.Mock implements _i10.LocalDataSource {
+  MockLocalDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -240,22 +239,22 @@ class MockProductLocalDataSource extends _i1.Mock
       ) as _i6.Future<List<_i3.ProductModel>>);
 
   @override
-  _i6.Future<void> cacheAllProducts() => (super.noSuchMethod(
+  _i6.Future<void> cacheAllProducts(List<_i3.ProductModel>? products) =>
+      (super.noSuchMethod(
         Invocation.method(
           #cacheAllProducts,
-          [],
+          [products],
         ),
         returnValue: _i6.Future<void>.value(),
         returnValueForMissingStub: _i6.Future<void>.value(),
       ) as _i6.Future<void>);
 }
 
-/// A class which mocks [ProductRemoteDataSource].
+/// A class which mocks [RemoteDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockProductRemoteDataSource extends _i1.Mock
-    implements _i11.ProductRemoteDataSource {
-  MockProductRemoteDataSource() {
+class MockRemoteDataSource extends _i1.Mock implements _i11.RemoteDataSource {
+  MockRemoteDataSource() {
     _i1.throwOnMissingStub(this);
   }
 

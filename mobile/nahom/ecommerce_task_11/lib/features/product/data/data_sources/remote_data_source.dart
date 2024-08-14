@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:ecommerce_task_9/features/product/data/models/product_model.dart';
 import 'package:http/http.dart' as http;
 
-abstract class ProductRemoteDataSource {
+abstract class RemoteDataSource {
   ///calls the backend server to perform crud operations
   ///
   /// Throws a [ServerException] for all error codes.
@@ -29,10 +29,10 @@ abstract class ProductRemoteDataSource {
   Future<ProductModel> addProduct(ProductModel product);
 }
 
-class ProductRemoteDataSourceImpl extends ProductRemoteDataSource {
+class RemoteDataSourceImpl extends RemoteDataSource {
   final http.Client client;
 
-  ProductRemoteDataSourceImpl({required this.client});
+  RemoteDataSourceImpl({required this.client});
 
   @override
   Future<ProductModel> addProduct(ProductModel product) {
