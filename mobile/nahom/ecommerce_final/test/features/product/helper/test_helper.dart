@@ -5,7 +5,6 @@ import 'package:ecommerce_task_9/features/product/domain/repositories/product_re
 import 'package:http/http.dart' as http;
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:mockito/annotations.dart';
-import 'package:mockito/annotations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 @GenerateMocks(

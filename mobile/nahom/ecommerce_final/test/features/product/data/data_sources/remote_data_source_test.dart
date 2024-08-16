@@ -4,12 +4,11 @@ import 'package:dartz/dartz.dart';
 import 'package:ecommerce_task_9/core/error/exception.dart';
 import 'package:ecommerce_task_9/features/product/data/data_sources/remote_data_source.dart';
 import 'package:ecommerce_task_9/features/product/data/models/product_model.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:http/http.dart' as http;
 
-import '../../../fixtures/fixture_reader.dart';
+import '../../../../fixtures/fixture_reader.dart';
 import '../../helper/test_helper.mocks.dart';
 
 void main() {

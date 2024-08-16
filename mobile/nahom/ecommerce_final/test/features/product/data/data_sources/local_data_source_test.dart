@@ -6,7 +6,7 @@ import 'package:ecommerce_task_9/features/product/data/models/product_model.dart
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../../fixtures/fixture_reader.dart';
+import '../../../../fixtures/fixture_reader.dart';
 import '../../helper/test_helper.mocks.dart';
 
 void main() {

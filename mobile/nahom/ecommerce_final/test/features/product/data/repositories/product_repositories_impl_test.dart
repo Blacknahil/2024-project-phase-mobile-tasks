@@ -35,8 +35,6 @@ void main() {
       imageUrl: "images/home.png");
   final ProductEntity testProductEntity = testProductModel.toEntity();
 
-  const List<ProductModel> tProductModels = [testProductModel];
-
   void runTestsOnline(Function body) {
     group("\ndevice is online\n", () {
       setUp(() {
@@ -271,7 +269,7 @@ void main() {
             when(mockLocalDataSource.getAllProducts())
                 .thenThrow(CacheException());
             //act
-            final result = await productRepositoryImpl.getAllProducts();
+            await productRepositoryImpl.getAllProducts();
 
             verifyZeroInteractions(mockRemoteDataSource);
             verify(mockLocalDataSource.getAllProducts());
