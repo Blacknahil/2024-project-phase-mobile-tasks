@@ -60,7 +60,7 @@ void main() {
   group('cacheAllProducts', () {
     final List<ProductModel> testProducts = [
       const ProductModel(
-        id: 1,
+        id: '1',
         name: 'Product 1',
         price: 100,
         description: 'mens shoe',
@@ -98,7 +98,7 @@ void main() {
       final testProductModelList = ProductModel.fromJsonList(jsonList);
 
       const CACHED_PRODUCTS = "CACHED_PRODUCTS";
-      const testId = 1;
+      const testId = "1";
 
       test(
         "should return one product that has been chached by id",
@@ -123,7 +123,7 @@ void main() {
             .thenReturn(json.encode(jsonList));
 
         //act
-        final call = dataSource.getSpecificProduct(3);
+        final call = dataSource.getSpecificProduct("3");
 
         //assert
         expect(() => call, throwsA(TypeMatcher<CacheException>()));
@@ -134,7 +134,7 @@ void main() {
         when(mockSharedPreferences.getString(CACHED_PRODUCTS)).thenReturn(null);
 
         //act
-        final call = dataSource.getSpecificProduct(1);
+        final call = dataSource.getSpecificProduct(testId);
 
         //assert
         expect(() => call, throwsA(TypeMatcher<CacheException>()));
@@ -146,7 +146,7 @@ void main() {
             .thenReturn('Invalid Json');
 
         //act
-        final call = dataSource.getSpecificProduct(1);
+        final call = dataSource.getSpecificProduct(testId);
 
         //assert
         expect(() => call, throwsA(TypeMatcher<CacheException>()));

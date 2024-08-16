@@ -12,7 +12,7 @@ abstract class LocalDataSource {
   /// the user had an internet connection.
   ///
   /// Throws [CacheException] if no cached data is present.
-  Future<ProductModel> getSpecificProduct(int id);
+  Future<ProductModel> getSpecificProduct(String id);
 
   /// Gets the cached [Products] which was gotten the last time
   ///the user had an internet connection.
@@ -68,7 +68,7 @@ class LocalDataSourceImpl extends LocalDataSource {
   }
 
   @override
-  Future<ProductModel> getSpecificProduct(int id) async {
+  Future<ProductModel> getSpecificProduct(String id) async {
     try {
       final ProductsString = sharedPreferences.getString(CACHED_PRODUCTS);
       if (ProductsString != null) {

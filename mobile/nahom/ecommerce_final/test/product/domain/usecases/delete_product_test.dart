@@ -15,7 +15,7 @@ void main() {
     deleteProduct = DeleteProduct(mockProductRepository);
   });
 
-  const testId = 1;
+  const testId = "981";
 
   test(
     "should delete a product from the repository",

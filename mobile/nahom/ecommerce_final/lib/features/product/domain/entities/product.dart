@@ -3,13 +3,13 @@ import 'package:equatable/equatable.dart';
 class ProductEntity extends Equatable {
   final String name;
   final String description;
-  final int id;
+  final String id;
   final String imageUrl;
   final int price;
 
   const ProductEntity({
     required this.name,
-    this.id = -1,
+    this.id = '',
     required this.description,
     required this.price,
     this.imageUrl = '',

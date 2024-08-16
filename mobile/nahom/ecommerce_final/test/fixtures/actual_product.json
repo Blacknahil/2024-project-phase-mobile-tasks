@@ -1,0 +1,11 @@
+{
+    "statusCode": 200,
+    "message": "",
+    "data": {
+        "id": "66bdfad79bbe07fc3903515b",
+        "name": "what ? ",
+        "description": "dvvsbs",
+        "price": 1e+33,
+        "imageUrl": "https://res.cloudinary.com/g5-mobile-track/image/upload/v1723726550/images/f6ds2amboic4x6qqbipx.jpg"
+    }
+}

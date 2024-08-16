@@ -5,13 +5,13 @@ import 'package:ecommerce_task_9/features/product/domain/usecases/base_usecase.d
 
 import '../../../../core/error/failure.dart';
 
-class GetSpecificProduct extends UseCase<ProductEntity, int> {
+class GetSpecificProduct extends UseCase<ProductEntity, String> {
   final ProductRepository productRepository;
 
   GetSpecificProduct(this.productRepository);
 
   @override
-  Future<Either<Failure, ProductEntity>> execute(int id) {
+  Future<Either<Failure, ProductEntity>> execute(String id) {
     return productRepository.getSpecificProduct(id);
   }
 }

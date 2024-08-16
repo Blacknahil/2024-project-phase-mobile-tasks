@@ -25,13 +25,13 @@ void main() {
     );
   });
 
-  const testId = 1;
+  const testId = "1";
 
   const testProductModel = ProductModel(
       name: "ambessa shoes",
       description: "a shoe made from the natural tannery of ethiopian cows",
       price: 120,
-      id: 1,
+      id: "1",
       imageUrl: "images/home.png");
   final ProductEntity testProductEntity = testProductModel.toEntity();
 

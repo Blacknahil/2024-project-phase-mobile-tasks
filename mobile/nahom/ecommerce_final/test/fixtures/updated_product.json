@@ -1,0 +1,11 @@
+{
+    "statusCode": 200,
+    "message": "",
+    "data": {
+        "id": "66bdfad79bbe07fc3903515b",
+        "name": "updated name",
+        "imageUrl": "something",
+        "description": "something",
+        "price": 100
+    }
+}

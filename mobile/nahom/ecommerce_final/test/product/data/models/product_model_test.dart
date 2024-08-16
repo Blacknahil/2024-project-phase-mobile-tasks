@@ -11,7 +11,7 @@ void main() {
     name: "ambessa shoes",
     description: "a shoe made from the natural tannery of ethiopian cows",
     price: 120,
-    id: 1,
+    id: "1",
     imageUrl: "images/home.png",
   );
 
@@ -49,7 +49,7 @@ void main() {
         "name": "ambessa shoes",
         "description": "a shoe made from the natural tannery of ethiopian cows",
         "price": 120,
-        "id": 1,
+        "id": "1",
         "imageUrl": "images/home.png"
       };
       //act

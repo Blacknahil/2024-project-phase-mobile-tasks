@@ -16,6 +16,7 @@ import 'package:shared_preferences/shared_preferences.dart';
     RemoteDataSource,
     InternetConnectionChecker,
     SharedPreferences,
+    http.MultipartFile,
   ],
   customMocks: [MockSpec<http.Client>(as: #MockHttpClient)],
 )

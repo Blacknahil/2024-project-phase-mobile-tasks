@@ -16,7 +16,7 @@ void main() {
     getSpecificProduct = GetSpecificProduct(mockProductRepository);
   });
 
-  const testId = 1;
+  const testId = "92hui";
 
   const testProduct = ProductEntity(
     name: "ambessa shoes",

@@ -3,7 +3,7 @@ import 'package:ecommerce_task_9/features/product/domain/entities/product.dart';
 class ProductModel extends ProductEntity {
   const ProductModel({
     required String name,
-    int id = -1,
+    String id = '',
     required String description,
     String imageUrl = '',
     required int price,
@@ -19,8 +19,8 @@ class ProductModel extends ProductEntity {
     return ProductModel(
       name: json['name'],
       description: json['description'],
-      price: json['price'],
-      id: json['id'] ?? -1,
+      price: (json['price'] as num).toInt(),
+      id: json['id'] ?? '',
       imageUrl: json["imageUrl"] ?? '',
     );
   }
