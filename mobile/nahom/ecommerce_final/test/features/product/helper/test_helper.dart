@@ -1,7 +1,13 @@
 import 'package:ecommerce_task_9/core/network/network_info.dart';
+import 'package:ecommerce_task_9/core/util/input_converter.dart';
 import 'package:ecommerce_task_9/features/product/data/data_sources/local_data_source.dart';
 import 'package:ecommerce_task_9/features/product/data/data_sources/remote_data_source.dart';
 import 'package:ecommerce_task_9/features/product/domain/repositories/product_repositories.dart';
+import 'package:ecommerce_task_9/features/product/domain/usecases/add_product.dart';
+import 'package:ecommerce_task_9/features/product/domain/usecases/delete_product.dart';
+import 'package:ecommerce_task_9/features/product/domain/usecases/get_all_products.dart';
+import 'package:ecommerce_task_9/features/product/domain/usecases/get_specifc_product.dart';
+import 'package:ecommerce_task_9/features/product/domain/usecases/update_product.dart';
 import 'package:http/http.dart' as http;
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:mockito/annotations.dart';
@@ -15,6 +21,12 @@ import 'package:shared_preferences/shared_preferences.dart';
     RemoteDataSource,
     InternetConnectionChecker,
     SharedPreferences,
+    DeleteProduct,
+    AddProduct,
+    GetAllProducts,
+    GetSpecificProduct,
+    UpdateProduct,
+    InputConverter,
     http.MultipartFile,
   ],
   customMocks: [MockSpec<http.Client>(as: #MockHttpClient)],

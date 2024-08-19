@@ -2,7 +2,7 @@ import 'package:ecommerce_task_9/core/network/network_info.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-import '../features/product/helper/test_helper.mocks.dart';
+import '../../features/product/helper/test_helper.mocks.dart';
 
 void main() {
   late MockInternetConnectionChecker mockInternetConnectionChecker;

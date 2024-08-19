@@ -46,6 +46,8 @@ dependencies:
   shared_preferences: ^2.2.3
   http_parser: ^4.0.2
   lint: ^2.3.0
+  bloc: ^8.1.4
+  bloc_test: ^9.1.7
 
 dev_dependencies:
   flutter_test:
