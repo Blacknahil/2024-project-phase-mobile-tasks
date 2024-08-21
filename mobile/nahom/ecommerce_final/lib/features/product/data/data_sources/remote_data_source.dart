@@ -142,6 +142,8 @@ class RemoteDataSourceImpl extends RemoteDataSource {
       final response = await client.put(Uri.parse('$URL/$productId'),
           body: jsonBody, headers: {"Content-Type": "application/json"});
 
+      print(response.statusCode);
+      print('$URL/$productId');
       if (response.statusCode == 200) {
         return ProductModel.fromJson(json.decode(response.body)["data"]);
       } else {
